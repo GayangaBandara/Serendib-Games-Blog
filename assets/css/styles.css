@@ -419,13 +419,13 @@ Header Style
 }
 
 .header-area .main-nav .nav li:last-child a {
-  background-color: #eeb16294;
+  background-color: #ee626b;
   text-transform: uppercase;
   font-weight: 500;
 }
 
 .header-area .main-nav .nav li:last-child:hover a {
-  background-color: #489cb6b2;
+  background-color: #0071f8;
 }
 
 .header-area .main-nav .nav li:hover a {
