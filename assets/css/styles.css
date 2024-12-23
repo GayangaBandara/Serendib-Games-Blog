@@ -164,6 +164,7 @@ body {
   text-transform: capitalize;
   margin-top: 20px;
   line-height: 44px;
+  color: #000000;
 }
 
 .section-heading-1 h2 {
@@ -174,6 +175,7 @@ body {
     line-height: 44px;
     color: #ffffff;
 }
+  
 
 .section-heading h2 em {
   font-style: normal;
@@ -854,12 +856,13 @@ Trending Style
   text-align: right;
 }
 
-.categories .item  {
-  background-color: #0070f83a;
+.trending .item  {
+  background-color: #ffffff17;
   position: relative;
+  overflow: hidden;
   border-radius: 25px;
-  text-align: center;
   margin-bottom: 30px;
+  border-bottom: 1px solid #25b8dd;
 }
 
 .trending .item .thumb {
@@ -1033,7 +1036,7 @@ Categories Style
 }
 
 .categories .item  {
-  background-color: #0071f8;
+  background-color: #0070f83a;
   position: relative;
   border-radius: 25px;
   text-align: center;
@@ -1065,7 +1068,7 @@ CTA Style
 }
 
 .cta::after {
-  background-image: url(../images/bgc/jinx.jpg);
+  background-image: url(../images/cta-bg.jpg);
   max-width: 550px;
   max-height: 510px;
   width: 100%;
