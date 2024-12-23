@@ -931,10 +931,23 @@ Most Played Style
 */
 
 .most-played {
-  background-color: #f7f7f7;
-  padding: 100px 0px;
-  border-radius: 150px;
-}
+    background-color: #4de4ff50;
+    padding: 100px 0;
+    border-radius: 100px;
+    width: 95%;
+    height: 95%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-bottom: 2px solid #f73116;
+    border-top: 2px solid #f73116;
+  }
+  
+  
 
 .most-played .main-button {
   margin-top: 32px;
@@ -970,6 +983,7 @@ Most Played Style
   font-size: 17px;
   font-weight: 600;
   transition: all .3s;
+  color: #333131;
 }
 
 .most-played .item .down-content a {
