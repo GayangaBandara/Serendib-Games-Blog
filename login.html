@@ -1,55 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Serandib Login</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	<link rel="stylesheet" href="assets/css/login.css">
-
+  <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
-<!-- partial:index.partial.html -->
- <br><br>
-<div class="box-form">
-	<div class="left">
-		<div class="overlay">
-		<h1>Game On!</h1>
-		<p>Welcome back! We’ve missed you – let’s pick up where we left off!</p>
-		<span>
-			<p>login with social media</p>
-			<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-			<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Login with Twitter</a>
-		</span>
-		</div>
-	</div>
-	
-	
-		<div class="right">
-		<h5>Login</h5>
-		<p>Don't have an account? <a>Creat Your Account</a> it takes less than a minute</p>
-		<div class="inputs">
-			<input type="text" placeholder="user name">
-			<br>
-			<input type="password" placeholder="password">
-		</div>
-			
-			<br><br>
-			
-		<div class="remember-me--forget-password">
-				<!-- Angular -->
-	<label>
-		<input type="checkbox" name="item" checked/>
-		<span class="text-checkbox">Remember me</span>
-	</label>
-			<p>forget password?</p>
-		</div>
-			
-			<br>
-			<button>Login</button>
-	</div>
-	
-</div>
-<!-- partial -->
-  
+  <br><br>
+  <div class="box-form">
+    <div class="left">
+      <div class="overlay">
+        <h1>Game On!</h1>
+        <p>Welcome back! We’ve missed you – let’s pick up where we left off!</p>
+        <span>
+          <p>Login with social media</p>
+          <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> Login with Facebook</a>
+          <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Login with Twitter</a>
+        </span>
+      </div>
+    </div>
+
+    <div class="right">
+      <h5>Login</h5>
+      <p>Don't have an account? <a href="#">Create Your Account</a> – it takes less than a minute.</p>
+      <div class="inputs">
+        <input type="text" placeholder="User Name" aria-label="User Name">
+        <br>
+        <input type="password" placeholder="Password" aria-label="Password">
+      </div>
+      
+      <br><br>
+
+      <div class="remember-me--forget-password">
+        <label>
+          <input type="checkbox" name="remember" checked>
+          <span class="text-checkbox">Remember me</span>
+        </label>
+        <a href="#" class="forgot-password-link">Forget password?</a>
+      </div>
+      
+      <br>
+      <button type="submit">Login</button>
+    </div>
+  </div>
 </body>
 </html>
