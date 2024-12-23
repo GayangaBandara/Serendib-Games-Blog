@@ -846,11 +846,12 @@ Trending Style
 }
 
 .trending .item  {
-  background-color: #eeeeee;
+  background-color: #ffffff17;
   position: relative;
   overflow: hidden;
   border-radius: 25px;
   margin-bottom: 30px;
+  border-bottom: 1px solid #25b8dd;
 }
 
 .trending .item .thumb {
@@ -887,7 +888,7 @@ Trending Style
 
 .trending .item .down-content span.category {
   font-size: 14px;
-  color: #7a7a7a;
+  color: #b6adad;
   margin-bottom: 5px;
   display: inline-block;
 }
@@ -896,6 +897,7 @@ Trending Style
   font-size: 17px;
   font-weight: 600;
   transition: all .3s;
+  color: #ffffff;
 }
 
 .trending .item .down-content a {
