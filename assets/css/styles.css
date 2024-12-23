@@ -191,7 +191,7 @@ body {
 
 .main-button a {
   display: inline-block;
-  background-color: #ff6c1c;
+  background-color: #ee626b;
   text-transform: uppercase;
   color: #fff;
   font-size: 14px;
@@ -204,7 +204,7 @@ body {
 }
 
 .main-button a:hover {
-  background-color: #161f2a;
+  background-color: #0071f8;
   color: #fff;
 }
 
