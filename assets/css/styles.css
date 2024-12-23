@@ -854,13 +854,12 @@ Trending Style
   text-align: right;
 }
 
-.trending .item  {
-  background-color: #ffffff17;
+.categories .item  {
+  background-color: #0070f83a;
   position: relative;
-  overflow: hidden;
   border-radius: 25px;
+  text-align: center;
   margin-bottom: 30px;
-  border-bottom: 1px solid #25b8dd;
 }
 
 .trending .item .thumb {
