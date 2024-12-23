@@ -1041,6 +1041,7 @@ Categories Style
   border-radius: 25px;
   text-align: center;
   margin-bottom: 30px;
+  border-top: 1px solid #ffffff;
 }
 
 .categories .item .thumb {
