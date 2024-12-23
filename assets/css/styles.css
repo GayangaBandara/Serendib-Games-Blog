@@ -733,8 +733,8 @@ Banner Style
   height: 50px;
   outline: none;
   border-radius: 25px;
-  background-color: #42d8f342;
-  border: none;
+  background-color: #413f3f9c;
+  border: 1px solid #ffffff;
   padding: 0px 25px;
   font-size: 14px;
   color: #7a7a7a;
@@ -744,7 +744,7 @@ Banner Style
   display: inline-block;
   height: 50px;
   line-height: 50px;
-  background-color: rgba(255, 119, 0, 0.418);
+  background-color: #ee626b;
   color: #fff;
   font-size: 15px;
   text-transform: uppercase;
@@ -759,7 +759,7 @@ Banner Style
 }
 
 .main-banner .caption form button:hover {
-  background-color: #f8a100a2;
+  background-color: #0071f8;
 }
 
 .main-banner .right-image {
