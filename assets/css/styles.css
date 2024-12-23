@@ -1068,7 +1068,7 @@ CTA Style
 }
 
 .cta::after {
-  background-image: url(../images/cta-bg.jpg);
+  background-image: url(../images/bgc/jinx.jpg);
   max-width: 550px;
   max-height: 510px;
   width: 100%;
