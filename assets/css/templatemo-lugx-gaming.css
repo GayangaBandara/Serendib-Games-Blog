@@ -1134,12 +1134,12 @@ Footer Style
 
 footer {
   margin-top: 150px;
-  background-color: #0071f8;
+  background-color: #ffffff0e;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../images/footer-bg.jpg);
-  min-height: 150px;
+  min-height: 100px;
   border-radius: 150px 150px 0px 0px;
+  border-top: 1px solid #ffffff;
 }
 
 footer p {
