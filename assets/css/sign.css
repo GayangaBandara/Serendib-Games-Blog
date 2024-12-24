@@ -17,7 +17,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: Arial, sans-serif;
-  background-image: url(sign.jpg);
+  background-image: url(/assets/images/bgc/sign.jpg);
 }
 
 .container {
