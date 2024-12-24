@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Responsive Registration Form | CodingLab </title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <link rel="stylesheet" href="assets/css/sign.css">
+  <script type="module" src="assets/js/register.js" defer></script>
+
+  </head>
 <body>
   <div class="container">
     <!-- Title section -->
@@ -15,10 +17,7 @@
       <form action="#">
         <div class="user-details">
           <!-- Input for Full Name -->
-          <div class="input-box">
-            <span class="details">Full Name</span>
-            <input type="text" placeholder="Enter your name" required>
-          </div>
+          
           <!-- Input for Username -->
           <div class="input-box">
             <span class="details">Username</span>
@@ -27,29 +26,23 @@
           <!-- Input for Email -->
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="text" placeholder="Enter your email" required>
+            <input type="email" placeholder="Enter your email" id="email">
           </div>
           <!-- Input for Phone Number -->
-          <div class="input-box">
-            <span class="details">Phone Number</span>
-            <input type="text" placeholder="Enter your number" required>
-          </div>
+          
           <!-- Input for Password -->
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="text" placeholder="Enter your password" required>
+            <input type="password" placeholder="Enter your password" id="password" required>
           </div>
           <!-- Input for Confirm Password -->
-          <div class="input-box">
-            <span class="details">Confirm Password</span>
-            <input type="text" placeholder="Confirm your password" required>
-          </div>
+          
         </div>
       
         <!-- Submit button -->
-        <div class="button">
-          <input type="submit" value="Register">
-        </div>
+        <div class="button" >
+          <button type="submit" id="submit">Register</button>
+      </div>
         <a href="login.html">Already have an account? login</a>
       </form>
     </div>
