@@ -233,6 +233,28 @@ Pre-loader Style
   -webkit-transition: opacity 0.25s ease;
   transition: opacity 0.25s ease;
 }
+/* Styles for PC */
+/* Styles for PC */
+.pc-only {
+  display: block; /* Display on PCs */
+}
+
+/* Styles for mobile */
+.mobile-only {
+  display: none; /* Hide on PCs */
+}
+
+/* Media query for mobile */
+@media only screen and (max-width: 768px) {
+  .pc-only {
+      display: none; /* Hide on mobile */
+  }
+
+  .mobile-only {
+      display: block; /* Display on mobile */
+  }
+}
+
 
 .js-preloader.loaded {
   opacity: 0;
