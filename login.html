@@ -4,44 +4,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Registration Form</title>
-  <link rel="stylesheet" href="assets/css/sign.css">
+  <title>Serandib Login</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/login.css">
 </head>
 
 <body>
-  <div class="container">
-    <!-- Title section -->
-    <div class="title">Registration</div>
-    <div class="content">
-      <!-- Registration form -->
-      <form action="#">
-        <div class="user-details">
-          <!-- Input for Username -->
-          <div class="input-box">
-            <span class="details">Username</span>
-            <input type="text" placeholder="Enter your username" required id="username" name="username">
-          </div>
-          <!-- Input for Email -->
-          <div class="input-box">
-            <span class="details">Email</span>
-            <input type="email" placeholder="Enter your email" id="email" name="email" required>
-          </div>
-          <!-- Input for Password -->
-          <div class="input-box">
-            <span class="details">Password</span>
-            <input type="password" placeholder="Enter your password" id="password" name="password" required>
-          </div>
-        </div>
+  <br><br>
+  <div class="box-form">
+    <div class="left">
+      <div class="overlay">
+        <h1>Game On!</h1>
+        <p>Welcome back! We’ve missed you – let’s pick up where we left off!</p>
+      </div>
+    </div>
 
-        <!-- Notification Area -->
-        <div id="notification" style="margin-top: 10px; color: red;"></div>
+    <div class="right">
+      <h5>Login</h5>
+      <p>Don't have an account? <a href="sign.html">Create Your Account</a> – it takes less than a minute.</p>
+      <div class="inputs">
+        <input type="email" placeholder="Email" aria-label="Email" id="email" required>
+        <br>
+        <input type="password" placeholder="Password" aria-label="Password" id="password" required>
+      </div>
 
-        <!-- Submit Button -->
-        <div class="button">
-          <button type="submit" id="signup" name="signup_submit" value="Sign up">Register</button>
-        </div>
-        <a href="login.html">Already have an account? Login</a>
-      </form>
+      <br><br>
+
+      <div class="remember-me--forget-password">
+        <label>
+          <input type="checkbox" name="remember" checked>
+          <span class="text-checkbox">Remember me</span>
+        </label>
+        <a href="#" class="forgot-password-link">Forget password?</a>
+      </div>
+
+      <br>
+      <button type="submit" id="loginBtn">Login</button>
+
+      <!-- Notification area -->
+      <div id="notification" style="margin-top: 10px;"></div>
     </div>
   </div>
 
@@ -49,8 +50,8 @@
   <script type="module">
     // Import Firebase modules
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+    import { getDatabase } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
     // Firebase configuration
     const firebaseConfig = {
@@ -66,48 +67,48 @@
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
     const auth = getAuth();
+    const database = getDatabase(app);
 
-    // Handle form submission
-    const form = document.querySelector("form");
+    // Get elements
+    const loginBtn = document.getElementById("loginBtn");
     const notification = document.getElementById("notification");
 
-    form.addEventListener("submit", async (e) => {
+    // Login event
+    loginBtn.addEventListener("click", (e) => {
       e.preventDefault(); // Prevent default form submission
 
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-      const username = document.getElementById("username").value;
 
-      // Input validation
-      if (!email || !password || !username) {
+      // Validate input
+      if (!email || !password) {
         notification.style.color = "red";
-        notification.textContent = "Please fill out all fields.";
+        notification.textContent = "Please enter both email and password.";
         return;
       }
 
-      try {
-        // Create user in Firebase Authentication
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
+      // Sign in with Firebase Authentication
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
 
-        // Save user data in Firebase Realtime Database
-        await set(ref(database, 'users/' + user.uid), {
-          username: username,
-          email: email
+          notification.style.color = "green";
+          notification.textContent = `Welcome back, ${user.email}!`;
+
+          window.location.href = "index.html";
+
+          // Optionally, redirect to dashboard or home page
+          // window.location.href = 'dashboard.html';
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          notification.style.color = "red";
+          notification.textContent = `Error: ${errorMessage}`;
         });
-
-        // Display success message
-        notification.style.color = "green";
-        notification.textContent = `User created successfully! Welcome, ${username}`;
-      } catch (error) {
-        const errorMessage = error.message;
-
-        // Display error message
-        notification.style.color = "red";
-        notification.textContent = `Error: ${errorMessage}`;
-      }
     });
   </script>
 </body>
