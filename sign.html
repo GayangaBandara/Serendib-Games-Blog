@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Responsive Registration Form | CodingLab </title>
+  <title>Responsive Registration Form</title>
   <link rel="stylesheet" href="assets/css/sign.css">
-  <script type="module" src="assets/js/register.js" defer></script>
+</head>
 
-  </head>
 <body>
   <div class="container">
     <!-- Title section -->
@@ -16,36 +16,100 @@
       <!-- Registration form -->
       <form action="#">
         <div class="user-details">
-          <!-- Input for Full Name -->
-          
           <!-- Input for Username -->
           <div class="input-box">
             <span class="details">Username</span>
-            <input type="text" placeholder="Enter your username" required>
+            <input type="text" placeholder="Enter your username" required id="username" name="username">
           </div>
           <!-- Input for Email -->
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="email" placeholder="Enter your email" id="email">
+            <input type="email" placeholder="Enter your email" id="email" name="email" required>
           </div>
-          <!-- Input for Phone Number -->
-          
           <!-- Input for Password -->
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="password" placeholder="Enter your password" id="password" required>
+            <input type="password" placeholder="Enter your password" id="password" name="password" required>
           </div>
-          <!-- Input for Confirm Password -->
-          
         </div>
-      
-        <!-- Submit button -->
-        <div class="button" >
-          <button type="submit" id="submit">Register</button>
-      </div>
-        <a href="login.html">Already have an account? login</a>
+
+        <!-- Notification Area -->
+        <div id="notification" style="margin-top: 10px; color: red;"></div>
+
+        <!-- Submit Button -->
+        <div class="button">
+          <button type="submit" id="signup" name="signup_submit" value="Sign up">Register</button>
+        </div>
+        <a href="login.html">Already have an account? Login</a>
       </form>
     </div>
   </div>
+
+  <!-- Firebase Integration -->
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCYesRjEGGUd-QXfsn8KgLemO1Yx1bE-84",
+      authDomain: "serandib-gamers-blog.firebaseapp.com",
+      databaseURL: "https://serandib-gamers-blog-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "serandib-gamers-blog",
+      storageBucket: "serandib-gamers-blog.firebasestorage.app",
+      messagingSenderId: "546248392985",
+      appId: "1:546248392985:web:68007b0954f387ce41c588",
+      measurementId: "G-ZG0B7NXGQZ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+    // Handle form submission
+    const form = document.querySelector("form");
+    const notification = document.getElementById("notification");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault(); // Prevent default form submission
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const username = document.getElementById("username").value;
+
+      // Input validation
+      if (!email || !password || !username) {
+        notification.style.color = "red";
+        notification.textContent = "Please fill out all fields.";
+        return;
+      }
+
+      try {
+        // Create user in Firebase Authentication
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Save user data in Firebase Realtime Database
+        await set(ref(database, 'users/' + user.uid), {
+          username: username,
+          email: email
+        });
+
+        // Display success message
+        notification.style.color = "green";
+        notification.textContent = `User created successfully! Welcome, ${username}`;
+      } catch (error) {
+        const errorMessage = error.message;
+
+        // Display error message
+        notification.style.color = "red";
+        notification.textContent = `Error: ${errorMessage}`;
+      }
+    });
+  </script>
 </body>
+
 </html>
