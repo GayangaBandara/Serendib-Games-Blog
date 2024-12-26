@@ -245,6 +245,58 @@
         defer>
     </script>
 
+   <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCYesRjEGGUd-QXfsn8KgLemO1Yx1bE-84",
+      authDomain: "serandib-gamers-blog.firebaseapp.com",
+      databaseURL: "https://serandib-gamers-blog-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "serandib-gamers-blog",
+      storageBucket: "serandib-gamers-blog.firebasestorage.app",
+      messagingSenderId: "546248392985",
+      appId: "1:546248392985:web:68007b0954f387ce41c588",
+      measurementId: "G-ZG0B7NXGQZ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    // Get the button element
+    const authButton = document.getElementById('authButton');
+
+    // Check user authentication status
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // If user is logged in, change button text to "Logout"
+        authButton.textContent = 'Logout';
+      } else {
+        // If user is not logged in, display "Login" button
+        authButton.textContent = 'Login';
+      }
+    });
+
+    // Handle the login/logout button click
+    authButton.addEventListener('click', () => {
+      if (authButton.textContent === 'Login') {
+        // Redirect to login page if the user clicks "Login"
+        window.location.href = 'login.html';
+      } else if (authButton.textContent === 'Logout') {
+        // Log out the user if they are logged in
+        signOut(auth).then(() => {
+          alert("Logged out successfully!");
+          window.location.href = 'index.html'; // Redirect back to index
+        }).catch((error) => {
+          alert("Error logging out: " + error.message);
+        });
+      }
+    });
+  </script>
+
 </body>
 
 </html>
