@@ -33,3 +33,13 @@ Before you start, ensure you have the following:
    ```bash
    git clone https://github.com/your-repo/serendib-games-blog.git
 # Serendib-Games-Blog
+
+
+Group Members
+22UG1-0828 R.M.D.A.Rathnayaka
+22UG1-0285 K.G.G.R Bandara
+22UG1-0345 S P Ashen Samuditha Senarathne
+22UG1-0394 C W M V S Chandrasekara
+22UG1-0380 U.V.C.T.JAYATHILAKA
+22UG1-0390 K.P.Dilhara
+22UG1-0812 H.M.K.S. Dedunupitiya
