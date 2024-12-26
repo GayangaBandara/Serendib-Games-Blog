@@ -1,49 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Serandib Login</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/login.css">
+  <title>Responsive Registration Form</title>
+  <link rel="stylesheet" href="assets/css/sign.css">
 </head>
+
 <body>
-  <br><br>
-  <div class="box-form">
-    <div class="left">
-      <div class="overlay">
-        <h1>Game On!</h1>
-        <p>Welcome back! We’ve missed you – let’s pick up where we left off!</p>
-        <span>
-          <p>Login with social media</p>
-          <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> Login with Facebook</a>
-          <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Login with Twitter</a>
-        </span>
-      </div>
-    </div>
+  <div class="container">
+    <!-- Title section -->
+    <div class="title">Registration</div>
+    <div class="content">
+      <!-- Registration form -->
+      <form action="#">
+        <div class="user-details">
+          <!-- Input for Username -->
+          <div class="input-box">
+            <span class="details">Username</span>
+            <input type="text" placeholder="Enter your username" required id="username" name="username">
+          </div>
+          <!-- Input for Email -->
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="email" placeholder="Enter your email" id="email" name="email" required>
+          </div>
+          <!-- Input for Password -->
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="password" placeholder="Enter your password" id="password" name="password" required>
+          </div>
+        </div>
 
-    <div class="right">
-      <h5>Login</h5>
-      <p>Don't have an account? <a href="sign.html">Create Your Account</a> – it takes less than a minute.</p>
-      <div class="inputs">
-        <input type="text" placeholder="User Name" aria-label="User Name">
-        <br>
-        <input type="password" placeholder="Password" aria-label="Password">
-      </div>
-      
-      <br><br>
+        <!-- Notification Area -->
+        <div id="notification" style="margin-top: 10px; color: red;"></div>
 
-      <div class="remember-me--forget-password">
-        <label>
-          <input type="checkbox" name="remember" checked>
-          <span class="text-checkbox">Remember me</span>
-        </label>
-        <a href="#" class="forgot-password-link">Forget password?</a>
-      </div>
-      
-      <br>
-      <button type="submit">Login</button>
+        <!-- Submit Button -->
+        <div class="button">
+          <button type="submit" id="signup" name="signup_submit" value="Sign up">Register</button>
+        </div>
+        <a href="login.html">Already have an account? Login</a>
+      </form>
     </div>
   </div>
+
+  <!-- Firebase Integration -->
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCYesRjEGGUd-QXfsn8KgLemO1Yx1bE-84",
+      authDomain: "serandib-gamers-blog.firebaseapp.com",
+      databaseURL: "https://serandib-gamers-blog-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "serandib-gamers-blog",
+      storageBucket: "serandib-gamers-blog.firebasestorage.app",
+      messagingSenderId: "546248392985",
+      appId: "1:546248392985:web:68007b0954f387ce41c588",
+      measurementId: "G-ZG0B7NXGQZ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+    // Handle form submission
+    const form = document.querySelector("form");
+    const notification = document.getElementById("notification");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault(); // Prevent default form submission
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const username = document.getElementById("username").value;
+
+      // Input validation
+      if (!email || !password || !username) {
+        notification.style.color = "red";
+        notification.textContent = "Please fill out all fields.";
+        return;
+      }
+
+      try {
+        // Create user in Firebase Authentication
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Save user data in Firebase Realtime Database
+        await set(ref(database, 'users/' + user.uid), {
+          username: username,
+          email: email
+        });
+
+        // Display success message
+        notification.style.color = "green";
+        notification.textContent = `User created successfully! Welcome, ${username}`;
+      } catch (error) {
+        const errorMessage = error.message;
+
+        // Display error message
+        notification.style.color = "red";
+        notification.textContent = `Error: ${errorMessage}`;
+      }
+    });
+  </script>
 </body>
+
 </html>
